@@ -8,10 +8,10 @@
   /* Colors - Warm luxury palette with richer depth */
   --color-primary: #1a1a1a;
   --color-primary-light: #3a3a3a;
-  --color-accent: #D4714A;
-  --color-accent-dark: #B85D3A;
-  --color-accent-light: #F5D5C8;
-  --color-accent-glow: rgba(212, 113, 74, 0.15);
+  --color-accent: #2C4A6E;
+  --color-accent-dark: #1E3550;
+  --color-accent-light: #C8D6E5;
+  --color-accent-glow: rgba(44, 74, 110, 0.15);
   --color-background: #FAFAF8;
   --color-background-warm: #F5F3EF;
   --color-background-cream: #F0EDE8;
@@ -22,7 +22,7 @@
   --color-border-light: #F0EEE9;
   --color-wood: #9D8B73;
   --color-wood-light: #C4B8A5;
-  --color-gold: #C9A962;
+  --color-gold: #3B5D8A;
 
   /* Typography */
   --font-display: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
@@ -32,9 +32,9 @@
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
-  --spacing-lg: 5rem;
-  --spacing-xl: 7rem;
-  --spacing-2xl: 10rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4.5rem;
+  --spacing-2xl: 6rem;
 
   /* Layout */
   --container-width: 1200px;
@@ -200,7 +200,7 @@ em {
   font-size: clamp(1.625rem, 4vw, 2.25rem);
   font-weight: 400;
   line-height: 1.7;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   letter-spacing: 0.08em;
 }
 
@@ -447,7 +447,7 @@ em {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
 }
 
 .value-card {
@@ -666,7 +666,7 @@ em {
   font-size: 1.0625rem;
   line-height: 2;
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 .features-grid {
@@ -723,7 +723,7 @@ em {
 }
 
 .nearby .section-title {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .nearby-lead {
@@ -737,7 +737,7 @@ em {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .nearby-features li {
@@ -761,31 +761,50 @@ em {
 .bbq-nabe {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 60vh;
 }
 
-.bbq-nabe-image {
+/* 画像エリア：2枚を重ねて配置 */
+.bbq-nabe-visual {
   position: relative;
+  min-height: 520px;
   overflow: hidden;
+  background-color: var(--color-background-cream);
 }
 
-.bbq-nabe-image::after {
-  content: "";
+/* メイン：鍋写真（左上） */
+.bbq-nabe-img-main {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(212, 113, 74, 0.1) 0%, transparent 50%);
-  pointer-events: none;
+  top: 28px;
+  left: 28px;
+  width: 62%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
 }
 
-.bbq-nabe-image img {
+.bbq-nabe-img-main img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.bbq-nabe:hover .bbq-nabe-image img {
-  transform: scale(1.02);
+/* サブ：BBQ写真（右下、角だけ重なる） */
+.bbq-nabe-img-sub {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  width: 48%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.bbq-nabe-img-sub img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bbq-nabe-content {
@@ -836,8 +855,20 @@ em {
     grid-template-columns: 1fr;
   }
 
-  .bbq-nabe-image {
-    height: 50vh;
+  .bbq-nabe-visual {
+    min-height: 340px;
+  }
+
+  .bbq-nabe-img-main {
+    top: 16px;
+    left: 16px;
+    width: 60%;
+  }
+
+  .bbq-nabe-img-sub {
+    right: 16px;
+    bottom: 16px;
+    width: 46%;
   }
 
   .bbq-nabe-content .container {
@@ -966,13 +997,13 @@ em {
   font-size: 1.0625rem;
   font-weight: 400;
   opacity: 0.9;
-  margin-top: calc(var(--spacing-lg) * -1 + var(--spacing-md));
-  margin-bottom: var(--spacing-xl);
+  margin-top: calc(var(--spacing-md) * -1 + var(--spacing-sm));
+  margin-bottom: var(--spacing-md);
 }
 
 .pricing-card {
   max-width: 580px;
-  margin: 0 auto var(--spacing-xl);
+  margin: 0 auto var(--spacing-md);
   padding: 3.5rem 3rem;
   background-color: #ffffff;
   color: var(--color-text);
@@ -1000,7 +1031,7 @@ em {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 600;
-  color: var(--color-accent);
+  color: #C41E3A;
   line-height: 1.2;
 }
 
@@ -1065,6 +1096,7 @@ em {
 .benefits-image {
   position: relative;
   overflow: hidden;
+  max-width: 400px;
 }
 
 .benefits-image::after {
@@ -1077,7 +1109,7 @@ em {
 
 .benefits-image img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
   object-fit: cover;
   transition: transform var(--transition-slow);
 }
@@ -1091,7 +1123,7 @@ em {
   align-items: center;
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
-  background: linear-gradient(135deg, var(--color-gold) 0%, #B8943E 100%);
+  background: linear-gradient(135deg, var(--color-gold) 0%, #2C4A6E 100%);
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.6875rem;
@@ -1169,7 +1201,7 @@ em {
   }
 
   .benefits-image img {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     border-radius: 12px;
   }
 
@@ -1237,13 +1269,13 @@ em {
 .amenities-lead {
   font-size: 1.0625rem;
   line-height: 2;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .amenities-drinks {
   padding: var(--spacing-md);
   background-color: var(--color-background-warm);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .amenities-drinks > p:first-child {
@@ -1331,15 +1363,15 @@ em {
 .testimonials-lead {
   font-size: 1rem;
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 .instagram-embeds {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   max-width: 900px;
-  margin: 0 auto var(--spacing-xl);
+  margin: 0 auto var(--spacing-md);
 }
 
 .instagram-embed-item {
@@ -1399,7 +1431,7 @@ em {
 }
 
 .faq-list {
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
   text-align: left;
 }
 
@@ -1517,7 +1549,7 @@ em {
 .final-cta-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(212, 113, 74, 0.85) 0%, rgba(184, 93, 58, 0.9) 100%);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .final-cta .container {
@@ -1529,7 +1561,7 @@ em {
   font-size: clamp(1.625rem, 4vw, 2.25rem);
   font-weight: 400;
   line-height: 1.7;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   color: #ffffff;
 }
 
