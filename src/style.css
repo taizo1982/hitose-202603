@@ -287,9 +287,7 @@ em {
   right: 0;
   z-index: 100;
   background: linear-gradient(180deg, rgba(30, 30, 30, 0.9) 0%, rgba(30, 30, 30, 0.4) 60%, rgba(30, 30, 30, 0) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .header.scrolled {
@@ -1730,27 +1728,19 @@ em {
   opacity: 0;
 }
 
-/* Scroll animations - Enhanced with GPU acceleration */
+/* Scroll animations */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(30px) translateZ(0);
+  transform: translateY(20px);
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  transition-delay: var(--stagger-delay, 0s);
 }
 
 .animate-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0) translateZ(0);
-  will-change: auto;
-}
-
-/* Staggered animations via CSS custom property (set by JS) */
-.animate-on-scroll {
-  transition-delay: var(--stagger-delay, 0s);
+  transform: translateY(0);
 }
 
 /* ==========================================================================
